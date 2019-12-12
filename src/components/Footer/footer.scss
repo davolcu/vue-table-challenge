@@ -1,0 +1,19 @@
+@import "../../styles/colors";
+
+// Main styles for footer
+footer {
+  background-color: $primary-color;
+
+  padding: 15px 20px;
+  min-height: 100px;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+
+  a, span {
+    color: $aux-color;
+    font-weight: bold;
+  }
+}

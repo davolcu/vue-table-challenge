@@ -1,0 +1,26 @@
+@import "../../styles/colors";
+
+// Main styles for header
+header {
+  background-image: linear-gradient(90deg, $aux-color, $secondary-color);
+
+  section {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 15px 20px;
+
+    display: grid;
+    grid-template-columns: 75px 1fr;
+    grid-column-gap: 15px;
+    align-items: center;
+  }
+
+  img {
+    max-height: 75px;
+  }
+
+  span {
+    font-size: 32px;
+    font-weight: bold;
+  }
+}

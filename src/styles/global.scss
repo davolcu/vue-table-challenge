@@ -1,0 +1,19 @@
+// Reset CSS to avoid base-browser css
+@import "./reset";
+@import "./colors";
+@import "./typography";
+
+// Set the project font-family
+body {
+  font-family: $primary-font;
+}
+
+// Set global styles for elements
+span {
+  color: $text-color;
+  font-size: $main-size;
+}
+
+a {
+  text-decoration: none;
+}

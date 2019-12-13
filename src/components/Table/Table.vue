@@ -1,35 +1,28 @@
 <template>
   <section class="table-section">
+    <h1> {{viewMsg['heading_' + mode]}} </h1>
+
+    <form id="filter-form">
+      <label> Type to filter by name </label>
+      <input type="text" v-model="filter">
+    </form>
+
     <table>
       <tr>
-        <th v-for="column in leaguesByNetwork.column_names" v-bind:key="'league' + column">
-          {{column}}
+        <th v-for="column in content.column_names" v-bind:key="mode + column">
+          {{viewMsg[column]}}
         </th>
+        <th v-if="mode === 'league'"> {{viewMsg['ranking_position']}} </th>
       </tr>
 
-      <tr v-for="(row, index) in leaguesByNetwork.rows" v-bind:key="row.league + index">
-        <td>{{row.league}}</td>
+      <tr v-for="(row, index) in content.rows" v-bind:key="row[mode] + index">
+        <td>{{row[mode]}}</td>
         <td>{{row.posts}}</td>
         <td>{{row.$networks}}</td>
         <td>{{row.total}}</td>
         <td>{{row.engagement_per_post}}</td>
-      </tr>
-    </table>
-
-    <table>
-      <tr>
-        <th v-for="column in teamsByNetwork.column_names" v-bind:key="'team' + column">
-          {{column}}
-        </th>
-      </tr>
-
-      <tr v-for="(row, index) in teamsByNetwork.rows" v-bind:key="row.team + index">
-        <td>{{row.team}}</td>
-        <td>{{row.posts}}</td>
-        <td>{{row.$networks}}</td>
-        <td>{{row.total}}</td>
-        <td>{{row.engagement_per_post}}</td>
-        <td>{{row.roster_engagement}}</td>
+        <td v-if="mode === 'league'"> {{row.ranking_position}} </td>
+        <td v-else> {{row.roster_engagement}} </td>
       </tr>
     </table>
   </section>
@@ -38,27 +31,33 @@
 <script>
 export default {
   name: 'tableComponent',
+  props: {
+    mode: String,
+    content: Object,
+  },
   data() {
     return {
-      leaguesByNetwork: {},
-      teamsByNetwork: {},
+      filter: '',
+      orderedContent: {},
+      viewMsg: {
+        heading_league: 'Leagues Engagement Data By Network',
+        heading_team: 'Teams Engagement Data By Network',
+        league: 'Leagues',
+        team: 'Teams',
+        posts: 'Posts',
+        total: 'Total',
+        $networks: 'Networks',
+        engagement_per_post: 'Engagement Per Post',
+        ranking_position: 'Ranking Position',
+        roster_engagement: 'Roster Engagement',
+      },
     };
   },
   methods: {
-    setLeaguesByNetwork(leaguesByNetwork) {
-      this.leaguesByNetwork = leaguesByNetwork;
+    setOrderedContent(content, ordenation = 'posts') {
+      content.rows.sort((a, b) => (a[ordenation] > b[ordenation] ? 1 : -1));
+      this.orderedContent = content;
     },
-    setTeamsByNetwork(teamsByNetwork) {
-      this.teamsByNetwork = teamsByNetwork;
-    },
-  },
-  created() {
-    fetch('https://blinkfire-vue-challenge.s3-eu-west-1.amazonaws.com/GlobalRank-League-Premier+League-2019-10-15T14_57_43.json')
-      .then(response => response.json())
-      .then((myJson) => {
-        this.setLeaguesByNetwork(myJson.global_ranking.leagues_by_network);
-        this.setTeamsByNetwork(myJson.global_ranking.teams_by_network);
-      });
   },
 };
 </script>

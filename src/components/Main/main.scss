@@ -1,4 +1,25 @@
+@import "../../styles/mixins";
+@import "../../styles/typography";
+
+// Main styles for the main component
 main {
   min-height: calc(100vh - 205px);
-  text-align: center;
+
+  section {
+    @include default-section;
+  }
+}
+
+#mode-section {
+  display: flex;
+  align-items: center;
+
+  div {
+    font-size: $main-size;
+    margin-right: 15px;
+  }
+
+  button {
+    @include primary-button;
+  }
 }

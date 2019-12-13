@@ -1,1 +1,30 @@
+@import "../../styles/colors";
+@import "../../styles/mixins";
 
+// Main styles for table component
+#filter-form {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}
+
+table {
+  border: 1px solid $primary-color;
+}
+
+tr {
+  @include default-tr(6);
+
+  &:not(:last-child) {
+    border-bottom: 1px solid $primary-color;
+  }
+}
+
+th {
+  @include default-tr-child($secondary-color, $odd-header-color, $even-header-color);
+}
+
+td {
+  @include default-tr-child($primary-color, $odd-row-color, $even-row-color);
+}

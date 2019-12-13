@@ -1,13 +1,12 @@
 @import "../../styles/colors";
+@import "../../styles/mixins";
 
 // Main styles for header
 header {
   background-image: linear-gradient(90deg, $aux-color, $secondary-color);
 
   section {
-    max-width: 1440px;
-    margin: 0 auto;
-    padding: 15px 20px;
+    @include default-section;
 
     display: grid;
     grid-template-columns: 75px 1fr;

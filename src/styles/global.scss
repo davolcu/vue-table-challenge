@@ -9,7 +9,24 @@ body {
 }
 
 // Set global styles for elements
-span {
+h1 {
+  font-size: $h1-size;
+  font-weight: bold;
+  line-height: 1.5;
+  margin-bottom: 15px;
+}
+
+h2 {
+  font-size: $h2-size;
+  font-weight: bold;
+}
+
+h3 {
+  font-size: $h3-size;
+  font-weight: bold;
+}
+
+span, a {
   color: $text-color;
   font-size: $main-size;
 }

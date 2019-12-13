@@ -5,3 +5,11 @@ $aux-color: #FFFFFF;
 
 // Main color for text nodes
 $text-color: $primary-color;
+
+// Table header colors
+$odd-header-color: $primary-color;
+$even-header-color: lighten($primary-color, 5%);
+
+// Table rows colors
+$odd-row-color: $aux-color;
+$even-row-color: darken($aux-color, 10%)

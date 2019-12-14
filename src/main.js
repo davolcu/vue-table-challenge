@@ -13,6 +13,12 @@ import './styles/global.scss';
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 Vue.config.productionTip = false;
 
+// Add filter to capitalize strings
+Vue.filter('capitalize', (value) => {
+  if (!value) return '';
+  return value.charAt(0).toUpperCase() + value.slice(1);
+});
+
 // Vue instance to create the header component
 new Vue({
   render: h => h(Header),

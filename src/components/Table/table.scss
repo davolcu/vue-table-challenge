@@ -7,14 +7,26 @@
   align-items: center;
   justify-content: flex-end;
   margin-bottom: 10px;
+
+  input {
+    border: none;
+    border-bottom: 2px solid $secondary-color;
+
+    font-size: $main-size;
+    font-family: inherit;
+    text-align: right;
+  }
 }
 
 table {
   border: 1px solid $primary-color;
+  width: 100%;
 }
 
+// Generic styles for the table
 tr {
-  @include default-tr(6);
+  display: flex;
+  cursor: pointer;
 
   &:not(:last-child) {
     border-bottom: 1px solid $primary-color;
@@ -23,8 +35,83 @@ tr {
 
 th {
   @include default-tr-child($secondary-color, $odd-header-color, $even-header-color);
+
+  &:before, &:after {
+    content: '';
+    position: absolute;
+
+    border: 5px solid;
+    border-left-color: transparent;
+    border-right-color: transparent;
+
+    right: 10px;
+    transform: translateY(-50%);
+  }
+
+  &:after {
+    border-top-color: transparent;
+    top: calc(50% - 7px);
+  }
+
+  &:before {
+    border-bottom-color: transparent;
+    top: calc(50% + 7px);
+  }
 }
 
 td {
   @include default-tr-child($primary-color, $odd-row-color, $even-row-color);
+}
+
+// Specific styles for this table
+th, td {
+  flex-grow: 1;
+
+  &:first-child {
+    width: 35%
+  }
+
+  &:nth-child(2) {
+    width: 15%;
+  }
+
+  &:nth-child(3) {
+    width: 20%;
+  }
+
+  &:last-child {
+    width: 30%;
+  }
+}
+
+// League / Team block styles
+.title-td {
+  position: relative;
+
+  padding-left: 20px;
+  justify-content: flex-start;
+
+  svg {
+    position: absolute;
+    left: 5px;
+    font-size: 10px;
+    transition: transform 250ms linear;
+  }
+}
+
+// Dropdown styles -> Networks and Roster lines
+.active {
+  + tr td {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-row-gap: 5px;
+  }
+
+  svg {
+    transform: rotate(180deg);
+  }
+}
+
+.networks-heading, .roster-heading {
+  grid-column: span 2;
 }

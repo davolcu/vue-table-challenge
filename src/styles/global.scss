@@ -2,17 +2,31 @@
 @import "./reset";
 @import "./colors";
 @import "./typography";
+@import "./media-queries";
+
+// Border box for the entire DOM
+* {
+  box-sizing: border-box;
+}
 
 // Set the project font-family
 body {
   font-family: $primary-font;
 }
 
+// Hide a label without having an accessibility issue
+label {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
 // Set global styles for elements
 h1 {
   font-size: $h1-size;
   font-weight: bold;
-  line-height: 1.5;
+  line-height: 1.25;
   margin-bottom: 15px;
 }
 
@@ -28,9 +42,15 @@ h3 {
 
 span, a {
   color: $text-color;
-  font-size: $main-size;
+  font-size: $main-mobile-size;
 }
 
 a {
   text-decoration: none;
+}
+
+@media #{$min-width-2} {
+  span, a {
+    font-size: $main-size;
+  }
 }

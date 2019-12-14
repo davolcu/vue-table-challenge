@@ -1,0 +1,27 @@
+@import "../../styles/mixins";
+@import "../../styles/typography";
+@import "../../styles/media-queries";
+
+// Main styles for the mode selector component
+#mode-section {
+  display: flex;
+  align-items: center;
+
+  div {
+    font-size: $main-mobile-size;
+    font-weight: bold;
+    margin-right: 15px;
+  }
+
+  button {
+    @include primary-button;
+  }
+}
+
+@media #{$min-width-2} {
+  #mode-section {
+    div {
+      font-size: $main-size;
+    }
+  }
+}

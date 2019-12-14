@@ -1,5 +1,7 @@
-# vue-table-challenge
-A single app that creates a vue-powered table from a mocked database
+# BlinkFire Vue-table-challenge
+A single app that creates a vue-powered table from a mocked database and allows some manipulations like sorting, displaying/hiding columns, etc.
+
+Check the project: http://blinkfire-vue-challenge.s3-website-eu-west-1.amazonaws.com/
 
 ## Project setup
 ```
